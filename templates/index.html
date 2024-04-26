@@ -1,0 +1,34 @@
+{% load static%}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hello!</title>
+    <meta name="description" content="description"/>
+    <meta name="author" content="author" />
+    <meta name="keywords" content="keywords" />
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="{% static 'styles.css'%}" type="text/css" />
+  </head>
+  <body>
+<form method= 'POST'> {% csrf_token%}
+  <input type="text" placeholder="Enter a word" name="photo">
+  <button type= 'submit'>Enter</button>
+</form>
+<img src='https://source.unsplash.com/1600x900/?{{ photo}}' alt= 'image' />
+<div class= 'container'>
+<div class= 'random'>
+  <h4>Fact</h4>
+  <p>{{fact}}</p>
+</div>
+<div class= 'random'>
+  <h4>Bored</h4>
+  <p>{{activity}}</p>
+</div>  
+<div class= 'random'>
+  <h4>Dog</h4>
+  <img src= '{{dog}}'>
+  </div>
+  </div>
+  </body>
+</html>
