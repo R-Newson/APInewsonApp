@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 body{
   text-align: centre;
-  background-color: hotpink;
+  background-color: turquoise;
   colour: black
   font-family: 'Roboto', sans-serif;
 }
@@ -30,9 +30,9 @@ img{
 }
 .random{
   padding:1rem;
-  width:19rem;
+  width:20rem;
   height:20rem;
-  background-color: white;
+  background-color: floralwhite;
   border: 2px solid black;
   border-radius: 20px;
 }
