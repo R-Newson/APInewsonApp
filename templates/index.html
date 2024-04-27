@@ -10,20 +10,22 @@
   <meta charset="UTF-8" />
   <link rel="stylesheet" href="{% static 'styles.css' %}" type="text/css" />
   <style>
-    
+    /* Style for the slideshow container */
     .slideshow-container {
       max-width: 100%;
       position: relative;
       margin: auto;
     }
 
-   
     .mySlides {
       display: none;
     }
   </style>
 </head>
 <body>
+  <div class="Introduction">
+    <h1>Welcome to the Newson API practice! Explore the beauty of Nature</h1>
+    <p>Get lost in the captivating allure of nature with these soothing images. Whether you're a nature enthusiast or seeking solace from the chaos of everyday life, you'll find tranquility in every snapshot. Embrace the beauty of the natural world as you explore through our collection. And for those with diverse interests, fear not, there's something for everyone here. Amidst life's challenges, let these images uplift your spirits and inspire confidence in a brighter tomorrow. Take a moment to unwind, immerse yourself, and rediscover peace within.</p>
   <form method="POST">
     {% csrf_token %}
     <input type="text" placeholder="Enter a word" name="photo">
@@ -31,6 +33,7 @@
   </form>
 
   <div class="slideshow-container">
+
     <div class="mySlides">
       <img src="https://source.unsplash.com/1600x900/?{{ photo }}" alt="image1" style="width:100%">
     </div>
@@ -38,6 +41,8 @@
     <div class="mySlides">
       <img src="https://source.unsplash.com/1600x900/?{{ photo }}" alt="image2" style="width:100%">
     </div>
+
+   
     <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
     <a class="next" onclick="plusSlides(1)">&#10095;</a>
   </div>
@@ -74,6 +79,7 @@
       slideIndex++;
       if (slideIndex > slides.length) {slideIndex = 1}
       slides[slideIndex-1].style.display = "block";
+      setTimeout(showSlides, 2000);
     }
 
     function plusSlides(n) {
@@ -84,16 +90,6 @@
       var popup = document.getElementById("myPopup");
       popup.classList.toggle("show");
     }
-    setInterval(function() {
-      plusSlides(1);
-    }, 2000);
-document.querySelector('.prev').addEventListener('click', function() {
-      plusSlides(-1);
-    });
-
-    document.querySelector('.next').addEventListener('click', function() {
-      plusSlides(1);
-    });
   </script>
 </body>
 </html>
