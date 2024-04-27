@@ -1,4 +1,4 @@
-{% load static%}
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,36 +8,92 @@
   <meta name="author" content="author" />
   <meta name="keywords" content="keywords" />
   <meta charset="UTF-8" />
-  <link rel="stylesheet" href="{% static 'styles.css'%}" type="text/css" />
+  <link rel="stylesheet" href="{% static 'styles.css' %}" type="text/css" />
+  <style>
+    
+    .slideshow-container {
+      max-width: 100%;
+      position: relative;
+      margin: auto;
+    }
+
+   
+    .mySlides {
+      display: none;
+    }
+  </style>
 </head>
 <body>
-  <form method= 'POST'> {% csrf_token%}
-  <input type="text" placeholder="Enter a word" name="photo">
-  <button type= 'submit'>Enter</button>
+  <form method="POST">
+    {% csrf_token %}
+    <input type="text" placeholder="Enter a word" name="photo">
+    <button type="submit">Enter</button>
   </form>
-  <img src='https://source.unsplash.com/1600x900/?{{ photo}}' alt= 'image' />
-  <div class= 'container'>
-  <div class= 'random'>
-    <h4>Fact</h4>
-    <p>{{fact}}</p>
+
+  <div class="slideshow-container">
+    <div class="mySlides">
+      <img src="https://source.unsplash.com/1600x900/?{{ photo }}" alt="image1" style="width:100%">
+    </div>
+
+    <div class="mySlides">
+      <img src="https://source.unsplash.com/1600x900/?{{ photo }}" alt="image2" style="width:100%">
+    </div>
+    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+    <a class="next" onclick="plusSlides(1)">&#10095;</a>
   </div>
-  <div class= 'random'>
-    <h4>Bored</h4>
-    <p>{{activity}}</p>
-  </div>  
-  <div class= 'random'>
-    <h4>Dog</h4>
-    <img src= '{{dog}}'>
+
+  <div class="container">
+    <div class="random">
+      <h4>Fact</h4>
+      <p>{{ fact }}</p>
+    </div>
+    <div class="random">
+      <h4>Bored</h4>
+      <p>{{ activity }}</p>
+    </div>  
+    <div class="random">
+      <h4>Dog</h4>
+      <img src="{{ dog }}">
+    </div>
   </div>
-  </div>
- <div class="popup" onclick="myFunction()">Like?
+
+  <div class="popup" onclick="myFunction()">Like?
     <span class="popuptext" id="myPopup">Thank you...</span>
-</div>
-<script>
-  function myFunction() {
-  var popup = document.getElementById("myPopup");
-  popup.classList.toggle("show");
+  </div>
+
+  <script>
+    var slideIndex = 0;
+    showSlides();
+
+    function showSlides() {
+      var i;
+      var slides = document.getElementsByClassName("mySlides");
+      for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
       }
-</script>
-  </body>
+      slideIndex++;
+      if (slideIndex > slides.length) {slideIndex = 1}
+      slides[slideIndex-1].style.display = "block";
+    }
+
+    function plusSlides(n) {
+      showSlides(slideIndex += n);
+    }
+
+    function myFunction() {
+      var popup = document.getElementById("myPopup");
+      popup.classList.toggle("show");
+    }
+    setInterval(function() {
+      plusSlides(1);
+    }, 2000);
+document.querySelector('.prev').addEventListener('click', function() {
+      plusSlides(-1);
+    });
+
+    document.querySelector('.next').addEventListener('click', function() {
+      plusSlides(1);
+    });
+  </script>
+</body>
 </html>
